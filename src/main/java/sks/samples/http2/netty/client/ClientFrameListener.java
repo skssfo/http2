@@ -18,6 +18,7 @@ import sks.samples.http2.netty.common.FrameListener;
 
 public class ClientFrameListener extends FrameListener {
 
+
     @Override
     public int onDataRead(ChannelHandlerContext ctx, int streamId, ByteBuf data, int padding, boolean endOfStream)
             throws Http2Exception {
@@ -37,6 +38,16 @@ public class ClientFrameListener extends FrameListener {
     @Override
     public void onSettingsRead(ChannelHandlerContext ctx, Http2Settings settings)
             throws Http2Exception {
+        //save the reference to ChannelHandlerContext
+        setChannelHandlerContext(ctx);
         ctx.fireChannelRead(settings);
+    }
+
+    @Override
+    public void onPushPromiseRead(ChannelHandlerContext ctx, int streamId, int promisedStreamId,
+                                  Http2Headers headers, int padding) throws Http2Exception {
+
+        System.out.println("ClientFrameListener.onHeadersRead()");
+        super.onPushPromiseRead(ctx, streamId, promisedStreamId, headers, padding);
     }
 }
