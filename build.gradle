@@ -1,0 +1,27 @@
+apply plugin: 'java'
+
+version = '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'io.netty:netty-all:4.1.0.Beta6'
+    runtime 'com.twitter:hpack:v1.0.1' //'org.mortbay.jetty.alpn:alpn-boot:8.1.4.v20150727' - for JDK 1.8. This should be in jvm boot classpath
+}
+
+task server(type: JavaExec, dependsOn: classes) {
+    jvmArgs = ['-Xbootclasspath/p:/Users/ssat/software/netty/alpn-lib/alpn-boot-8.1.4.v20150727.jar'] //ALPN needs to be in boot classpath. Is there a way to just add that?
+    main = 'sks.samples.http2.netty.server.Server'
+    classpath sourceSets.main.runtimeClasspath
+    systemProperty "listenPort", "8443"
+}
+
+task client(type: JavaExec, dependsOn: classes) {
+    jvmArgs = ['-Xbootclasspath/p:/Users/ssat/software/netty/alpn-lib/alpn-boot-8.1.4.v20150727.jar'] //ALPN needs to be in boot classpath. Is there a way to just add that?
+    main = 'sks.samples.http2.netty.client.Client'
+    classpath sourceSets.main.runtimeClasspath
+    systemProperty "serverHost", "127.0.0.1"
+    systemProperty "serverPort", "8443"
+}
