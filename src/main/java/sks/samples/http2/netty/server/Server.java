@@ -1,12 +1,4 @@
-/*
- * Http2Server.java
- * 
- * Copyright (c) 2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- *
- * PROPRIETARY/CONFIDENTIAL
- *
- * Use is subject to license terms.
- */
+
 package sks.samples.http2.netty.server;
 
 import io.netty.bootstrap.ServerBootstrap;

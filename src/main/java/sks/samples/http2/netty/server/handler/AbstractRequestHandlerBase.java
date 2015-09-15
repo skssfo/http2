@@ -1,12 +1,4 @@
-/*
- * AbstractRequestHandlerBase.java
- * 
- * Copyright (c) 2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
- *
- * PROPRIETARY/CONFIDENTIAL
- *
- * Use is subject to license terms.
- */
+
 package sks.samples.http2.netty.server.handler;
 
 import io.netty.handler.codec.http2.Http2Connection;
